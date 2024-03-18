@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import appSlice from "../redux/appSlice";
+import { countReset } from "console";
 
 const CounterMain = styled.div`
   display: flex;
@@ -61,13 +64,19 @@ const ShopCart = styled.button`
   }
 `;
 
-const CardCounter = (price: { price?: number }) => {
+const CardCounter = (price: { price?: number; name?: string }) => {
+  const disptach = useDispatch();
   const [count, setCount] = useState(1);
   const minus = () => {
     count - 1 > 0 && setCount(count - 1);
   };
   const plus = () => {
     setCount(count + 1);
+  };
+  const handleClick = () => {
+    disptach(
+      appSlice.actions.selectProduct({ name: price.name, count: count })
+    );
   };
   return (
     <CounterMain>
@@ -85,7 +94,7 @@ const CardCounter = (price: { price?: number }) => {
             <img src="/plus.svg" alt="plus" />
           </CountButton>
         </Counter>
-        <ShopCart>
+        <ShopCart onClick={handleClick}>
           <img src="/baseCart.svg" alt="icon" />
         </ShopCart>
       </CounterColumn>

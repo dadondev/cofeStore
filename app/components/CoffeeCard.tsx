@@ -57,7 +57,7 @@ const CoffeeCard: React.FC<Props> = ({ name, price, id }) => {
       <Badge>Tradicional</Badge>
       <Title>{name}</Title>
       <P>O tradicional café feito com água quente e grãos moídos</P>
-      <CardCounter price={price} />
+      <CardCounter price={price} name={name} />
     </Card>
   );
 };

@@ -1,6 +1,13 @@
+"use client";
+
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-const Button = styled.button`
+interface Props {
+  count: boolean;
+}
+
+const Button = styled.button<Props>`
   position: relative;
   border-radius: 6px;
   background-color: ${(props) => props.theme.colors.yellowLight};
@@ -10,7 +17,7 @@ const Button = styled.button`
   }
   & > p {
     transition: 500ms all;
-    transform: scale(1);
+    transform: ${(props) => (props.count ? "scale(1)" : "scale(0)")};
     top: -22%;
     right: -22%;
     position: absolute;
@@ -22,10 +29,13 @@ const Button = styled.button`
   }
 `;
 const HeaderCart = () => {
+  const count = useSelector(
+    (state: { selectedProducts: number }) => state?.selectedProducts
+  );
   return (
-    <Button>
+    <Button count={count > 0}>
       <img src="/cart.svg" alt="cart" />
-      <p>3</p>
+      {count > 0 && <p>{count}</p>}
     </Button>
   );
 };
