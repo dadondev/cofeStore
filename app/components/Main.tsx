@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Container from "../general/components/Container";
 import tablet from "../general/utils/tablet";
+import laptop from "../general/utils/laptop";
+import CoffeeCard from "./CoffeeCard";
 
 const StyledMain = styled.main`
   height: 100%;
@@ -15,6 +17,16 @@ const Title = styled.h1`
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 54px;
+  ${laptop} {
+    font-size: 3.2rem;
+    text-align: left;
+  }
+`;
+const CardsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 50px 32px;
 `;
 
 const Main = () => {
@@ -22,6 +34,14 @@ const Main = () => {
     <StyledMain>
       <Container>
         <Title>Nossos cafés</Title>
+
+        <CardsContainer>
+          {Array(10)
+            .fill(0)
+            .map(() => (
+              <CoffeeCard />
+            ))}
+        </CardsContainer>
       </Container>
     </StyledMain>
   );

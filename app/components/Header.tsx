@@ -5,11 +5,14 @@ import HeaderLocation from "./HeaderLocation";
 import HeaderCart from "./HeaderCart";
 
 const StyledHeader = styled.header`
+  z-index: 10000;
   transition: 500ms all;
   position: sticky;
   top: 0;
   padding-block: 15px;
   background-color: ${(props) => props.theme.colors.back};
+  opacity: 0.9;
+  backdrop-filter: blur(10px);
   width: 100%;
 `;
 
