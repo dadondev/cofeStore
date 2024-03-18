@@ -1,5 +1,12 @@
 import styled from "styled-components";
 import CardCounter from "./CardCounter";
+import React from "react";
+
+interface Props {
+  id: number;
+  name: string;
+  price: number;
+}
 
 const Card = styled.div`
   padding-inline: 24px;
@@ -43,14 +50,14 @@ const P = styled.p`
   margin-bottom: 25px;
 `;
 
-const CoffeeCard = () => {
+const CoffeeCard: React.FC<Props> = ({ name, price, id }) => {
   return (
     <Card>
-      <img src="/cof.svg" alt="coffee" />
+      <img src={`/cof-` + id + ".svg"} alt="coffee" />
       <Badge>Tradicional</Badge>
-      <Title>Expresso Tradicional</Title>
+      <Title>{name}</Title>
       <P>O tradicional café feito com água quente e grãos moídos</P>
-      <CardCounter />
+      <CardCounter price={price} />
     </Card>
   );
 };

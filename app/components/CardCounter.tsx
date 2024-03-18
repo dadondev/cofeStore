@@ -61,7 +61,7 @@ const ShopCart = styled.button`
   }
 `;
 
-const CardCounter = () => {
+const CardCounter = (price: { price?: number }) => {
   const [count, setCount] = useState(1);
   const minus = () => {
     count - 1 > 0 && setCount(count - 1);
@@ -73,7 +73,7 @@ const CardCounter = () => {
     <CounterMain>
       <PriceColumn>
         <Currency>R$</Currency>
-        <Price> 9,90</Price>
+        <Price> {price.price}</Price>
       </PriceColumn>
       <CounterColumn>
         <Counter>
